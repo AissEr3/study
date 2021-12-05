@@ -138,6 +138,7 @@ int main(void){
 	for(int i = 0; i < 10; i++){
 		add(list_p,i);
 	}
+	printf("123");
 
 	return 0;
 }
