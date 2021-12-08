@@ -14,12 +14,12 @@ typedef struct{
 
 
 int initList(List *list);
+int initList_size(List *list, int size);
 int destoryList(List *list);
 int isEmpty(List list);
-int add(List *list,type value);
+int insert(List *list,int i, type value);
 type get(List list,int i);
 int deleteByIndex(List *list, int index);
-int replace(List *list, int index, type newValue);
 int search(List list, type value);
 
 #endif

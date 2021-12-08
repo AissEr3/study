@@ -3,31 +3,30 @@
 #include <stdlib.h>
 
 //int initList(List *list);
-//int destroyList(List *list);
+//int initList_size(List *list, int size);
+//int destoryList(List *list);
 //int isEmpty(List list);
-//int add(List *list, type value);
-//type get(List list);
+//int insert(List *list,int i, type value);
+//type get(List list,int i);
 //int deleteByIndex(List *list, int index);
-//int replace(List *list, int index, type newValue);
 //int search(List list, type value);
-int initList_size(List *list,int size);
-int boostLenth(List *list);
+int boostLenth(List *list,int newSize);
 
 /*
+	仅支持内部使用，不对外
 	功能：增加数组长度
 */
-int boostLenth(List *list){
-	List *aList;
-	int length = list->length;
-	//aList初始化
-	initList_size(aList,length+INCREASE_VALUE);
-	for(int i = 0; i < length; i++){
-		add(aList,list->data[i]);
-	}
-	if(!destoryList(list)){
+int boostLenth(List *list,int newSize){
+	int *newData = (type *)malloc(sizeof(type)*newSize);
+	if (!newData){
 		return 0;
 	}
-	list = aList;
+	int length = list->length;
+	for(int i = 0; i < length; i++){
+		newData[i] = get(*list,i);
+	}
+	free(list->data);
+	list->data = newData;
 	return 1;
 }
 
@@ -38,13 +37,13 @@ int initList(List *list){
 	return initList_size(list,DEFAULT_lENGTH);
 }
 
-int initList_size(List *list,int size){
-	if(list->listSize != 0 || list->data != NULL){
+int initList_size(List *list, int size){
+	list->data = (type *) malloc(sizeof(type)*size);
+	if(!list->data){
 		return 0;
 	}
 	list->listSize = size;
 	list->length = 0;
-	list->data = (type *) malloc(sizeof(type)*size);
 	return 1;
 }
 
@@ -75,13 +74,20 @@ int isEmpty(List list){
 /*
 	功能：向List中添加一个值
 */
-int add(List *list, type value){
+int insert(List *list,int i, type value){
 	if(list->length >= list->listSize){
-		if(!boostLenth(list)){
+		if(!boostLenth(list,list->length + INCREASE_VALUE)){
 			return 0;
 		}
 	}
-	list->data[list->listSize++] = value;
+	else if(i > list->length || i < 0){
+		return 0;
+	}
+	for(int j = list->length++; j >= i; j--){
+		list->data[j] = list->data[j-1];
+	}
+	list->data[i] = value;
+	
 	return 1;
 }
 
@@ -89,33 +95,28 @@ int add(List *list, type value){
 	功能：根据下标获取一个值
 */
 type get(List list,int i){
-	if(i > list.length){
-
+	if(i >= list.length){
+		printf("index out of range");
+		exit(0);
 	}
+	else if(i < 0){
+		printf("index is minus");
+		exit(0);
+	}
+	return list.data[i];
 }
 
 /*
 	功能：根据下标删除指定的数组值
 */
 int deleteByIndex(List *list, int index){
-	if(isEmpty(*list) || index >= list->length){
+	if(isEmpty(*list) || index >= list->length || index < 0){
 		return 0;
 	}
 	for(int i = index; i < list->length-1; i++){
 		list->data[i] = list->data[i+1];
 	}
 	list->length--;
-	return 1;
-}
-
-/*
-	功能：根据下标替换值
-*/
-int replace(List *list, int index, type newValue){
-	if(isEmpty(*list)|| index >= list->length){
-		return 0;
-	}
-	list->data[index] = newValue;
 	return 1;
 }
 
@@ -131,14 +132,3 @@ int search(List list, type value){
 	return -1;
 }
 
-int main(void){
-	List list;
-	List *list_p = &list;
-	initList(list_p);
-	for(int i = 0; i < 10; i++){
-		add(list_p,i);
-	}
-	printf("123");
-
-	return 0;
-}
