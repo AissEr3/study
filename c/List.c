@@ -13,7 +13,7 @@
 int boostLenth(List *list,int newSize);
 
 /*
-	仅支持内部使用，不对外
+	仅支持内部使用
 	功能：增加数组长度
 */
 int boostLenth(List *list,int newSize){
@@ -21,6 +21,7 @@ int boostLenth(List *list,int newSize){
 	if (!newData){
 		return 0;
 	}
+	list->listSize = newSize;
 	int length = list->length;
 	for(int i = 0; i < length; i++){
 		newData[i] = get(*list,i);
@@ -87,7 +88,7 @@ int insert(List *list,int i, type value){
 		list->data[j] = list->data[j-1];
 	}
 	list->data[i] = value;
-	
+
 	return 1;
 }
 
