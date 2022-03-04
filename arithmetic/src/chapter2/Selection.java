@@ -1,15 +1,17 @@
-package arithmetic.chapter2;
+package chapter2;
 
 import java.util.Arrays;
 
-public class Insertion {
+public class Selection {
     public static void sort(Comparable[] a){
-        for(int i = 1; i < a.length; i++){
-            for(int j = i; j > 0 && less(a[j],a[j-1]); j--){
-                exchange(a,j,j-1);
+        for(int i = 0; i < a.length - 1;i++){
+            int t = i;
+            for(int j = i + 1; j < a.length; j++){
+                if(less(a[j],a[t]))
+                    t = j;
             }
+            exchange(a,i,t);
         }
-
     }
 
     private static boolean less(Comparable v, Comparable w){
@@ -23,7 +25,7 @@ public class Insertion {
     }
 
     public static String show(Comparable[] a){
-        return Arrays.toString(a);
+       return Arrays.toString(a);
     }
 
     public static boolean isSort(Comparable[] a){

@@ -1,6 +1,6 @@
-package arithmetic.chapter3;
+package chapter3;
 
-import arithmetic.chapter1.Queue;
+import chapter1.Queue;
 
 //无序数组符号表
 public class ArrayST <Key extends Comparable<Key>,Value> {

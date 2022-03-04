@@ -1,4 +1,4 @@
-package arithmetic.chapter2;
+package chapter2;
 
 import java.util.Arrays;
 

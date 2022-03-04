@@ -1,4 +1,4 @@
-package arithmetic.chapter1;
+package chapter1;
 
 public class Test {
     public static void main(String[] args) {

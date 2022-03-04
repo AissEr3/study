@@ -1,4 +1,4 @@
-package arithmetic.chapter2;
+package chapter2;
 
 public class MaxPQ<Key extends Comparable<? super Key>>{
     private Key[] pq;

@@ -1,4 +1,4 @@
-package arithmetic.chapter1;
+package chapter1;
 
 import java.util.Iterator;
 

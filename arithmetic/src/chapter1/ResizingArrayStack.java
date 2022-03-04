@@ -1,4 +1,4 @@
-package arithmetic.chapter1;
+package chapter1;
 /*
     《算法（第四版）》，算法 1.1，下压（LIFO）栈（能够动态调整数组大小的实现）
  */

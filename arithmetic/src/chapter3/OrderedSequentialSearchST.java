@@ -1,6 +1,6 @@
-package arithmetic.chapter3;
+package chapter3;
 
-import arithmetic.chapter1.Queue;
+import chapter1.Queue;
 
 public class OrderedSequentialSearchST<Key extends Comparable<Key>, Value>{
     private Node head;
