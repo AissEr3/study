@@ -366,4 +366,20 @@ public class BTS <Key extends Comparable<Key>, Value>{
             keys(x.right, queue, lo, hi);
         }
     }
+
+    // 练习3.2.6，查找树的高度
+    public int height(){
+        return height(root,0,0);
+    }
+
+    private int height(Node x,int lo, int hi){
+        if(x == null){
+            return 0;
+        }
+        else {
+            lo = height(x.left,lo+1,hi);
+            hi = height(x.right,lo,hi+1);
+        }
+        return lo > hi ? lo+1 : hi+1;
+    }
 }
